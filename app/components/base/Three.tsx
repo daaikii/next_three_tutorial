@@ -1,16 +1,21 @@
 "use client"
-
-import { FC } from "react"
+import { OrbitControls, Stats } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
+import { FC } from "react"
 
-import Box from "@/app/components/geometrys/Box"
+import Light from "../light/Light";
+import Floor from "../geometrys/Floor";
+import SubSphereCylinder from "../geometrys/SubSphereCylinder";
 
 const Three: FC = () => {
   return (
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[1.2, 0, 0]} />
+    <Canvas camera={{ position: [0, 20, 10] }} shadows className="!fixed top-0 left-0 z-[-1]">
+      <Light />
+      <SubSphereCylinder />
+      <Floor />
+      <OrbitControls />
+      <Stats />
+      <axesHelper args={[10]} />
     </Canvas>
   )
 }
